@@ -16,21 +16,21 @@
                         </blockquote>
                     </div>                                 
                 </div>            
-            </div>
+            </div>         
             <div class="row justify-content-md-center no-gutters">
-                <div class="col-md-auto">                    
-                        {% if index<max_index %}
-                            <a href="{{ url_for('card_view', index = index+1)}}"
+                <div class="col-md-auto">
+                    {% if next_card_available == true %}
+                        <a href="{{ url_for('card_view', id = next_card_id)}}"
                                class="btn btn-success btn-lg btn-sm active" role="button" aria-pressed="true">
                                 Next Card
-                            </a>
-                        {% else %}
-                            <a href="{{ url_for('card_view', index = 0)}}"
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('card_view', id = next_card_id)}}"
                             class="btn btn-primary btn-lg btn-sm active" role="button" aria-pressed="true">
                                 Start Over
-                            </a>
-                        {% endif %}                   
-                </div>
+                        </a>
+                    {% endif %}                    
+                </div>            
                 <div class="col-md-auto">                    
                         <a href="{{ url_for('remove_card',index=index) }}"
                             class="btn btn-danger btn-lg btn-sm active" role="button" aria-pressed="true">
@@ -38,7 +38,7 @@
                         </a>                    
                 </div>
             </div>
-        </div>
+        </div>        
     </span>    
 </div>
 <hr>

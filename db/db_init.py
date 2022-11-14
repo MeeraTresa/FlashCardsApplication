@@ -6,11 +6,20 @@ conn = sqlite3.connect(db_abs_path)
 c = conn.cursor()
 
 c.execute("DROP TABLE IF EXISTS cards")
+c.execute("DROP TABLE IF EXISTS users")
 
 c.execute("""CREATE TABLE cards(
                     id              INTEGER PRIMARY KEY AUTOINCREMENT,
                     question        TEXT NOT NULL,
                     answer          TEXT NOT NULL
+)""")
+c.execute("""CREATE TABLE users(
+                    id              INTEGER PRIMARY KEY AUTOINCREMENT,
+                    username        STRING NOT NULL UNIQUE,
+                    email           STRING NOT NULL UNIQUE,
+                    description     TEXT,
+                    location        STRING NOT NULL,
+                    password        STRING NOT NULL
 )""")
 
 

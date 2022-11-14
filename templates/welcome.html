@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% block title %} Welcome {% endblock %}
+{% block title %} QuizWiz {% endblock %}
 {% block content %}
         <div class="row bg-light my-5">
         <h1>QuizWiz</h1>
@@ -29,7 +29,7 @@
                                     <div class="embed-responsive embed-responsive-16by9">
                                         <img class="card-img top embed-responsive-item" 
                                         src="{{url_for('static',filename='molecular-structure.png')}}"  alt="Organic Chemistry"/>
-                                        <a href="{{url_for('card_view',index=loop.index0)}}">
+                                        <a href="{{url_for('card_view',id=card.id)}}">
                                             {{card.question}}
                                         </a>
                                     </div>                          

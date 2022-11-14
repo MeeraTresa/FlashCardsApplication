@@ -6,6 +6,8 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField
 
 
+
+
 class NewCardForm(FlaskForm):
     question = StringField("Question")
     answer = TextAreaField("Answer")
@@ -14,6 +16,7 @@ class NewCardForm(FlaskForm):
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretkey"
+
 
 
 @app.route("/")

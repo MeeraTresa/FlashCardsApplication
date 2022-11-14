@@ -1,5 +1,13 @@
 body{
-    font-family: 'Courier New', Courier, monospace;
-    color: cornflowerblue;
-    background-color: floralwhite;
+    padding-top: 56px;
+}
+.navbar-brand{
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+.card-img-top{
+    object-fit: cover;
+}
+a:hover{
+    text-decoration: none;
 }

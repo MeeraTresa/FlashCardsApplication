@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Remove Card</title>
-    </head>
-    <body>
+{% extends "base.html" %}
+{% block title %} Remove Card {% endblock %}
+{% block content %}
         <h1>Remove a Flash Card</h1>
         Question: {{card.question}} <br>
         Answer: {{card.answer}}
@@ -13,5 +9,4 @@
             <button type="submit">Yes</button>
             <button><a href="{{url_for('welcome')}}">No</a></button>
         </form>
-    </body>
-</html> 
+{% endblock %}   

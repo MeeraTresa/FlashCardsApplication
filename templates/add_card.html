@@ -1,21 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Add Card</title>
-    </head>
-    <body>
-        <h1>Add a new card</h1>
+{% extends "base.html" %}
+{% block title %} Add Card {% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-7 offset-lg-2 my-5">
+        <h1>Add a new card</h1><hr>
         <form method="post">
-            <p>
-                Question: 
-                <input type="text" name="question">                
-            </p>
-            <p>
-                Answer: 
-                <input type="text" name="answer">                
-            </p>
-            <button type="submit">Create</button>
+            {{form.hidden_tag()}}
+            <div class="form-group">
+                <p>
+                    {{form.question.label}}
+                    {{form.question(class="form-control")}}                                  
+                </p>
+            </div>
+            <div class="form-grop">
+                <p>
+                    {{form.answer.label}}
+                    {{form.answer(class="form-control")}}              
+                </p>
+            </div>
+            <hr> 
+            {{form.submit(class="btn btn-primary form-control")}}
+            
         </form>
-    </body>
-</html>
+    </div>
+</div>
+        
+{% endblock %}  

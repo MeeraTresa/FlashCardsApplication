@@ -1,35 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Flash Card</title>
-    </head>
-    <body>
-        <h1>Flash Card</h1>
-        Question: {{card.question}}<br>
-        Answer: {{card.answer}}
-        <p>
-            <button>
-                <a href="{{ url_for('welcome')}}">
-                    Home
-                </a>
-            </button>
-            <button>
-                {% if index<max_index %}
-                    <a href="{{ url_for('card_view', index = index+1)}}">
-                        Next Card
-                    </a>
-                {% else %}
-                    <a href="{{ url_for('card_view', index = 0)}}">
-                        Start Over
-                    </a>
-                {% endif %}
-            </button>
-            <button>
-                <a href="{{ url_for('remove_card',index=index) }}">
-                    Remove Card
-                </a>
-            </button>
+{% extends "base.html" %}
+{% block title %} Flashcard {% endblock %}
+{% block content %}
+
+<div class="row bg-light my-5">
+    <span class="border border-success">
+        <div class="col-lg-7 offset-lg-2 my-5 ">
+            <div class="row justify-content-md-center no-gutters">
+                <div class="col-md-auto card border-warning" style="width: 31rem;">
+                    <div class="card-header bg-transparent">
+                        Question: {{card.question}}
+                    </div> 
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            Answer: {{card.answer}}
+                        </blockquote>
+                    </div>                                 
+                </div>            
+            </div>
+            <div class="row justify-content-md-center no-gutters">
+                <div class="col-md-auto">                    
+                        {% if index<max_index %}
+                            <a href="{{ url_for('card_view', index = index+1)}}"
+                               class="btn btn-success btn-lg btn-sm active" role="button" aria-pressed="true">
+                                Next Card
+                            </a>
+                        {% else %}
+                            <a href="{{ url_for('card_view', index = 0)}}"
+                            class="btn btn-primary btn-lg btn-sm active" role="button" aria-pressed="true">
+                                Start Over
+                            </a>
+                        {% endif %}                   
+                </div>
+                <div class="col-md-auto">                    
+                        <a href="{{ url_for('remove_card',index=index) }}"
+                            class="btn btn-danger btn-lg btn-sm active" role="button" aria-pressed="true">
+                            Remove Card
+                        </a>                    
+                </div>
+            </div>
+        </div>
+    </span>    
+</div>
+<hr>
+<div class="row">
+    <div class="my-4">
+        <p>The best digital flashcards and study tools for Organic Chemistry.<br>
+            Join over 60 million students using QuizWhiz’s science-backed flashcards, 
+            practice tests and expert solutions to improve their grades and reach their goals.
         </p>
-    </body>
-</html>
+        <div class="embed-responsive embed-responsive-16by9">
+            <img class="card-img top embed-responsive-item" 
+                        src="{{url_for('static',filename='organic-chemistry1.jpg')}}"  alt="Organic Chemistry"/>
+        </div>
+    </div>
+</div>        
+{% endblock %}  

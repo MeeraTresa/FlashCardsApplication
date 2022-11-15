@@ -1,6 +1,6 @@
 import os
 from flask import (Flask, render_template, abort,
-                   request, redirect, url_for, g, flash)
+                   request, redirect, url_for, g, flash, session)
 from model import db
 import sqlite3
 from forms.RegistrationForm import RegistrationForm
@@ -9,7 +9,8 @@ from forms.NewCardForm import NewCardForm
 from sqla import sqla
 from models.cards import Card
 from models.user import User
-#from login import login_manager
+from flask_login import login_required, login_user
+from login import login_manager
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -19,7 +20,12 @@ app.config["SECRET_KEY"] = "secretkey"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" +  os.path.join(basedir,'quizwiz.sqlite')
 sqla.init_app(app)
-#login_manager.init_app(app)
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
+
 
 @app.before_first_request
 def create_tables():
@@ -74,11 +80,25 @@ def login():
         elif not user.check_password(password):
             error = "Incorrect password."
         if error is None:
-            flash("You are successfully logged in.", "success")
-            return redirect(url_for("welcome"))
+            login_user(user)
+            flash("You are successfully logged in.", "success")            
+            return redirect(url_for("user_dashboard"))
         flash(error,"warning")
     return render_template("login.html", form=form)
 
+@app.route("/dashboard")
+@login_required
+def user_dashboard():
+    cards_using_sqla = sqla.session.execute(sqla.select(Card).order_by(Card.id.desc())).first()
+    return render_template("dashboard.html", cards = cards_using_sqla )
+
+@app.route("/logout")
+@login_required
+def logout():
+    """Clear the current session, including the stored user id."""
+    session.clear()
+    flash("You have been logged out !", "info")
+    return redirect(url_for("login"))
 
 @app.route("/add_card", methods=["GET", "POST"])
 def add_card():

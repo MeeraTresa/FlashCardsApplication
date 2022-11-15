@@ -1,8 +1,9 @@
 from sqla import sqla
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import validates
+from flask_login import UserMixin
 
-class User(sqla.Model):
+class User(sqla.Model,UserMixin):
     __tablename__ = "users"
 
     id                 = sqla.Column(sqla.Integer(), primary_key=True)
@@ -31,7 +32,7 @@ class User(sqla.Model):
             value = generate_password_hash(value)
 
         return value
-        
+
     def validate_unique(self, key, value, error_message=None):
         if (
             User.query.filter_by(**{key: value}).first()

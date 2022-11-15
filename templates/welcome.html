@@ -6,7 +6,7 @@
         <h3>Have fun Learning Organic Chemistry !</h3>
         </div>
         <div class="row">
-            <div class="col-md-auto">
+            <div class="col-9">
                 <div class="my-4">
                     <blockquote class="blockquote mb-0">
                         <p>The best digital flashcards and study tools for Organic Chemistry.<br>
@@ -16,11 +16,11 @@
                     </blockquote>                    
                     <div class="embed-responsive embed-responsive-16by9 my-4">
                         <img class="rounded top embed-responsive-item" 
-                                    src="{{url_for('static',filename='organic-chemistry1.jpg')}}"  alt="Organic Chemistry"/>
+                                    src="{{url_for('static',filename='study.jpg')}}"  alt="Organic Chemistry"/>
                     </div>
                 </div>
             </div>
-            <div class="col-md-auto">
+            <div class="col-3">
                 <div class="row my-5 card-wrapper">                    
                         <div class="col-md-auto">                            
                             <ul>
@@ -28,7 +28,7 @@
                                 <div class="card h-100">
                                     <div class="embed-responsive embed-responsive-16by9">
                                         <img class="card-img top embed-responsive-item" 
-                                        src="{{url_for('static',filename='molecular-structure.png')}}"  alt="Organic Chemistry"/>
+                                        src="https://picsum.photos/id/{{card.id+50}}/200/200"  alt="Organic Chemistry"/>
                                         <a href="{{url_for('card_view',id=card.id)}}">
                                             {{card.question}}
                                         </a>

@@ -1,23 +1,44 @@
 {% extends "base.html" %}
 {% block title %} Flashcard {% endblock %}
 {% block content %}
-
+<script>
+    function flipCard(){        
+            document.getElementById("card_answer").style.visibility = "visible";  
+            document.getElementById("flipButton").style.pointerEvents="None";
+            document.getElementById("flipButton").style.opacity=".4";
+            document.getElementById("flipButton").style.cursor="default";
+                   
+    }    
+</script> 
 <div class="row bg-light my-5">
     <span class="border border-success">
         <div class="col-lg-7 offset-lg-2 my-5 ">
             <div class="row justify-content-md-center no-gutters">
                 <div class="col-md-auto card border-warning" style="width: 31rem;">
-                    <div class="card-header bg-transparent">
-                        Question: {{card.question}}
+                    <!--
+                        <div class="card-header bg-transparent">
+                        {{card.question}}
                     </div> 
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            Answer: {{card.answer}}
+                    --> 
+                    <div class="card-header alignMiddle" id="card_question" style="visibility: visible">
+                        <blockquote class="blockquote mb-0 text-center">
+                             {{card.question}}
+                        </blockquote>
+                    </div>                     
+                    <div class="card-body alignMiddle" id="card_answer" style="visibility: hidden" >
+                        <blockquote class="blockquote mb-0 text-center">
+                            {{card.answer}}
                         </blockquote>
                     </div>                                 
                 </div>            
             </div>         
             <div class="row justify-content-md-center no-gutters">
+                <div class="col-md-auto">                    
+                    <a onclick="flipCard();" id="flipButton" style="visibility: visible"
+                        class="btn btn-info btn-lg btn-sm active" role="button" aria-pressed="true">
+                        Answer
+                    </a>                    
+                </div>
                 <div class="col-md-auto">
                     {% if next_card_available == true %}
                         <a href="{{ url_for('card_view', id = next_card_id)}}"
@@ -53,5 +74,6 @@
                         src="{{url_for('static',filename='organic-chemistry1.jpg')}}"  alt="Organic Chemistry"/>
         </div>
     </div>
-</div>        
+</div>     
+  
 {% endblock %}  

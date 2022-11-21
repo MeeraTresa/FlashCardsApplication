@@ -18,7 +18,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "secretkey"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" +  os.path.join(basedir,'quizwiz.sqlite')
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" +  os.path.join(basedir,'db/quizwiz.sqlite')
 sqla.init_app(app)
 login_manager.init_app(app)
 

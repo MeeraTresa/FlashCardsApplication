@@ -13,16 +13,8 @@
                             Join over 60 million students using QuizWiz’s science-backed flashcards, 
                             practice tests and expert solutions to improve their grades and reach their goals.
                         </p>
-                    </blockquote>                    
-                    <div class="embed-responsive embed-responsive-16by9 my-4">
-                        <img class="rounded top embed-responsive-item" 
-                                    src="{{url_for('static',filename='study.jpg')}}"  alt="Organic Chemistry"/>
-                    </div>
-                    <div class="embed-responsive embed-responsive-16by9 my-4">
-                        <img class="rounded top embed-responsive-item" 
-                                    src="{{url_for('static',filename='kid.jpg')}}"  alt="Organic Chemistry"/>
-                    </div>
-                </div>
+                    </blockquote>
+                 </div>
             </div>
             <div class="col-3">
                 <div class="row my-5 card-wrapper">                    
@@ -32,7 +24,7 @@
                                 <div class="card h-100">
                                     <div class="embed-responsive embed-responsive-16by9">
                                         <img class="card-img top embed-responsive-item" 
-                                        src="https://picsum.photos/id/{{card.id+50}}/200/200"  alt="Organic Chemistry"/>
+                                        src="{{url_for('static',filename='molecular-structure.png')}}"  alt="Organic Chemistry"/>
                                         <a href="{{url_for('card_view',id=card.id)}}">
                                             {{card.question}}
                                         </a>

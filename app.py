@@ -11,6 +11,7 @@ from models.cards import Card
 from models.user import User
 from flask_login import login_required, login_user
 from login import login_manager
+import datetime
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -33,6 +34,10 @@ def load_user(user_id):
 @app.before_first_request
 def create_tables():
     sqla.create_all()
+    
+@app.before_request
+def make_session_permanent():
+    session.permanent = False
 
 @app.route("/")
 def welcome():    
@@ -83,7 +88,7 @@ def login():
         elif not user.check_password(password):
             error = "Incorrect password."
         if error is None:
-            login_user(user)
+            login_user(user, remember=False, duration=None, force=False, fresh=True)
             flash("You are successfully logged in.", "success")            
             return redirect(url_for("user_dashboard"))
         flash(error,"warning")
